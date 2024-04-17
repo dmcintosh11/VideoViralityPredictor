@@ -20,7 +20,8 @@ pip install TikTokApi
 python -m playwright install
 pip install yt-dlp
 
-
+In order to scrape run the following command:
+python3 download_files.py --ms_token='<your_token>'
 
 
 Things to note for future improvement of dataset/ future works to include in presentation:
