@@ -41,6 +41,8 @@ async def get_related_videos(input_video_url: str, df: pd.DataFrame, count: int=
         print('Getting related videos for video: ' + input_video_url)
         print(input_video)
         
+        #copy_df = df.copy()
+        
         video_count = 0
 
         async for video in input_video.related_videos(count=count):
@@ -76,9 +78,19 @@ async def get_related_videos(input_video_url: str, df: pd.DataFrame, count: int=
                 print('Downloading video...')
                 download_video(username, id, "TikTokVideos/")
                 
+                
+                
+                #ADDINGN EW LINES
+                
+                new_row = pd.DataFrame([{'id': id, 'filename': filename, 'url': url, 'desc': desc, 'createTime': createTime, 'downloadTime': downloadTime, 'author': username, 'collectCount': collectCount, 'commentCount': commentCount, 'diggCount': diggCount, 'playCount': playCount, 'shareCount': shareCount}])
+                
+                df = pd.concat([df, new_row], ignore_index=True)
+                
+                
+                
                 #Update and save after every video is downloaded
-                df = df.append({'id': id, 'filename': filename, 'url': url, 'desc': desc, 'createTime': createTime, 'downloadTime': downloadTime, 'author': username, 'collectCount': collectCount, 'commentCount': commentCount, 'diggCount': diggCount, 'playCount': playCount, 'shareCount': shareCount}, ignore_index=True)
-                df.to_csv('video_data.csv', index=False)
+                #df = df.append({'id': id, 'filename': filename, 'url': url, 'desc': desc, 'createTime': createTime, 'downloadTime': downloadTime, 'author': username, 'collectCount': collectCount, 'commentCount': commentCount, 'diggCount': diggCount, 'playCount': playCount, 'shareCount': shareCount}, ignore_index=True)
+                #df.to_csv('video_data.csv', index=False)
                 
                 print('Dataframe row added:')
                 print(df.iloc[-1])
@@ -97,6 +109,7 @@ async def get_related_videos(input_video_url: str, df: pd.DataFrame, count: int=
                 await asyncio.sleep(random_time)
     
     return df
+    #return
 
 async def trending_videos(df, count=30):
     async with TikTokApi() as api:
@@ -189,6 +202,8 @@ def get_related_videos_from_df(df):
     for i, url in enumerate(url_list):
         print('Getting related videos for video ' + str(i) + ' of ' + str(len(url_list)) + ' videos')
         df = asyncio.run(get_related_videos(url, df, count=1, use_sleep=True))
+        print('New shape of df: ' + str(df.shape))
+        df.to_csv('video_data.csv', index=False)
         random_time = random.randint(2, 5)
         time.sleep(random_time)
         

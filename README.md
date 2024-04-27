@@ -3,7 +3,28 @@ The goal is to predict the virality of a tiktok video based on solely the video 
 
 So the output of the video understanding model will be just a virality score.
 
-We need to create some virality score from the count columns in the csv
+
+PyTorch video reference links:
+https://pytorch.org/hub/facebookresearch_pytorchvideo_slowfast/
+
+
+https://github.com/facebookresearch/pytorchvideo/blob/main/INSTALL.md
+For running pytorchvideo code, you need to install the following:
+
+```conda create -n pytorchvideo python=3.7
+conda activate pytorchvideo
+conda install -c pytorch pytorch=1.8.0 torchvision cudatoolkit=10.2
+conda install -c conda-forge -c fvcore -c iopath fvcore=0.1.4 iopath
+pip install pytorchvideo```
+
+
+
+
+
+
+
+
+
 
 
 We may need to extract the duration of the videos to use as a feature or to grab all videos under 15 seconds to make it easier to train.

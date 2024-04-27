@@ -9,7 +9,7 @@ df['correctedUrl'] = "https://www.tiktok.com/@" + df['author'].astype(str) + "/v
 
 print(df.columns)
 
-df.drop(columns=['Unnamed: 0'], inplace=True)
+#df.drop(columns=['Unnamed: 0'], inplace=True)
 
 df.head()
 
