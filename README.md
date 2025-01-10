@@ -1,8 +1,8 @@
+**Presentation Deck Explaining Project**: https://www.canva.com/design/DAGFV39ApG4/j6W6HxRYLuyWr7wxFTjaAw/view?utm_content=DAGFV39ApG4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h66d96ca6bb
 
 The goal is to predict the virality of a tiktok video based on solely the video itself. We will use the video and audio data to predict the virality of the video. We will use the count columns as the target variable.
 
 So the output of the video understanding model will be just a virality score.
-
 
 PyTorch video reference links:
 https://pytorch.org/hub/facebookresearch_pytorchvideo_slowfast/
